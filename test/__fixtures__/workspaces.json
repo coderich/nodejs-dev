@@ -1,0 +1,10 @@
+[
+  {
+    "_id" : { "$oid": "629a4e56900bba5b2b6fa05f" },
+    "name" : "draft"
+  },
+  {
+    "_id" : { "$oid": "629a4e56900bba5b2b6fa072" },
+    "name" : "live"
+  }
+]
