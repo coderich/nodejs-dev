@@ -6,6 +6,8 @@ on:
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GIT_BRANCH: ${{ vars.GITHUB_REF_NAME }}
+  GIT_USER: 'Richard Livolsi'
+  GIT_EMAIL: 'richard.livolsi@gmail.com'
 
 jobs:
   publish:
@@ -16,6 +18,6 @@ jobs:
         with:
           node-version: '18'
       - run: 'npm ci'
+      - run: 'git config user.name "${{ env.GIT_USER }}"'
+      - run: 'git config user.email "${{ env.GIT_EMAIL }}"'
       - run: 'npm run dev npmPublish'
-      # - run: npm install -g bats
-      # - run: bats -v
