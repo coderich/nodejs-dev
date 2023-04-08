@@ -21,11 +21,11 @@ exports.copyrightHeader = () => {
 // };
 
 exports.npmPublish = () => {
-  const branch = process.env.GIT_BRANCH || shellCommand('git', 'rev-parse --abbrev-ref HEAD');
+  const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
   const version = ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
-  console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]"`));
-  try { console.log(shellCommand('npm publish')); } catch (e) { console.log(e); } // Known to report on stderr
+  try { console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]"`)); } catch (e) { console.log(e); }
+  try { console.log(shellCommand('npm publish')); } catch (e) { console.log(e); } // NPM bug reports on stderr
   console.log(shellCommand('git push && git push --tags'));
 };
 
