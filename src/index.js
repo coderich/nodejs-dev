@@ -24,8 +24,8 @@ exports.npmPublish = () => {
   const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
   const version = ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
-  try { console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]"`)); } catch (e) { console.log('caught npm version', e); }
-  try { console.log(shellCommand('npm publish')); } catch (e) { console.log('caught npm publish', e); } // NPM bug reports on stderr
+  console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]"`));
+  console.log(shellCommand('npm publish'));
   console.log(shellCommand('git push && git push --tags'));
 };
 
