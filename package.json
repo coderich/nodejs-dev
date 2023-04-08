@@ -1,9 +1,9 @@
 {
   "name": "@coderich/nodejs-dev",
   "main": "src/index.js",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "publishConfig": {
-    "access": "private"
+    "access": "public"
   },
   "files": [
     "src",
