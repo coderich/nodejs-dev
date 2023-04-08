@@ -6,7 +6,7 @@ const FS = require('fs');
 const Path = require('path');
 const Glob = require('glob');
 const { EJSON } = require('bson');
-const { AppRootPackage, AppRootPath, selfPath, binPath, shellCommand } = require('./util');
+const { AppRootPackage, selfPath, binPath, shellCommand } = require('./util');
 
 const cache = {};
 
@@ -16,7 +16,7 @@ exports.copyrightHeader = () => {
 };
 
 exports.bootstrap = () => {
-  ['.github', '.eslintrc', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(`${AppRootPath}`, file)]).forEach(([source, destination]) => {
+  ['.github', '.eslintrc', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(process.env.cwd, file)]).forEach(([source, destination]) => {
     try {
       console.log(shellCommand(`cp -RLpn ${source} ${destination}`));
     } catch (e) {
