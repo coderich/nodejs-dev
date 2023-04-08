@@ -21,7 +21,7 @@ exports.copyrightHeader = () => {
 // };
 
 exports.npmPublish = () => {
-  const branch = process.env.BITBUCKET_BRANCH || shellCommand('git', 'rev-parse --abbrev-ref HEAD');
+  const branch = process.env.GIT_BRANCH || shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
   const version = ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
   console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]" && npm publish && git push && git push --tags`));
