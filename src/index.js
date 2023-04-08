@@ -6,7 +6,7 @@ const FS = require('fs');
 const Path = require('path');
 const Glob = require('glob');
 const { EJSON } = require('bson');
-const { AppRootPackage, binPath, shellCommand } = require('./util');
+const { AppRootPackage, AppRootPath, selfPath, binPath, shellCommand } = require('./util');
 
 const cache = {};
 
@@ -15,10 +15,15 @@ exports.copyrightHeader = () => {
   console.log(shellCommand(`${path} --fix --copyrightHolder "Coderich LLC. All Rights Reserved." --include ".js$"`));
 };
 
-// exports.migrate = (config) => {
-//   const { cmd, filename, uri, folder, project = AppRootPackage.name } = config;
-//   return Promise.reject(Error(project));
-// };
+exports.bootstrap = () => {
+  ['.github', '.eslintrc', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(`${AppRootPath}`, file)]).forEach(([source, destination]) => {
+    try {
+      console.log(shellCommand(`cp -RLpn ${source} ${destination}`));
+    } catch (e) {
+      console.log(`[Ignored] ${source}`);
+    }
+  });
+};
 
 exports.npmPublish = () => {
   const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');

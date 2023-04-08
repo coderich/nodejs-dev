@@ -5,7 +5,7 @@
 /* eslint-disable no-console */
 
 const { Command } = require('commander');
-const { copyrightHeader, npmPublish, migrate } = require('../src');
+const { copyrightHeader, npmPublish, migrate, bootstrap } = require('../src');
 
 const program = new Command();
 
@@ -23,6 +23,11 @@ program.command('migrate')
       command.help();
     });
   });
-program.command('npmPublish').action(npmPublish); // Pass-thru
-program.command('copyrightHeader').action(copyrightHeader); // Pass-thru
+
+//
+program.command('npmPublish').action(npmPublish);
+program.command('bootstrap').action(bootstrap);
+program.command('copyrightHeader').action(copyrightHeader);
+
+//
 program.parseAsync(process.argv);

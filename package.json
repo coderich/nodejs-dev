@@ -36,9 +36,5 @@
     "glob": "8.1.0",
     "jest": "29.4.2",
     "mongodb": "5.2.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:CoderichLLC/nodejs-dev.git"
   }
 }

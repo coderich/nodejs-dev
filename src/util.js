@@ -7,7 +7,7 @@ const ChildProcess = require('child_process');
 const AppRootPath = require('app-root-path');
 
 exports.binPath = Path.join(`${AppRootPath}`, 'node_modules', '.bin');
-exports.selfPath = Path.join(`${AppRootPath}`, 'node_modules', '@coderich/nodejs-dev');
+exports.selfPath = Path.join(`${AppRootPath}`, 'node_modules', '@coderich/dev');
 exports.AppRootPackage = require(`${AppRootPath}/package.json`);
 exports.AppRootPath = AppRootPath;
 

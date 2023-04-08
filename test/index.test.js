@@ -5,7 +5,7 @@ const { autoMock, getMockFiles, parseFixtures } = require('../src/index');
 
 const appRootPath = Path.join(__dirname, '..');
 
-describe('@coderich/nodejs-dev', () => {
+describe('@coderich/dev', () => {
   test('autoMock', () => {
     expect(() => autoMock(appRootPath)).not.toThrow();
   });
