@@ -1,11 +1,15 @@
 /* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
 
 const Path = require('path');
-const { autoMock, getMockFiles, parseFixtures } = require('../src/index');
+const { bootstrap, autoMock, getMockFiles, parseFixtures } = require('../src/index');
 
 const appRootPath = Path.join(__dirname, '..');
 
 describe('@coderich/dev', () => {
+  test('bootstrap', () => {
+    expect(() => bootstrap()).not.toThrow();
+  });
+
   test('autoMock', () => {
     expect(() => autoMock(appRootPath)).not.toThrow();
   });

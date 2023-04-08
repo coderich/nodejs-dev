@@ -16,7 +16,7 @@ exports.copyrightHeader = () => {
 };
 
 exports.bootstrap = () => {
-  ['.github', '.eslintrc', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(process.env.cwd, file)]).forEach(([source, destination]) => {
+  ['.github', '.eslintrc', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(process.cwd(), file)]).forEach(([source, destination]) => {
     try {
       console.log(shellCommand(`cp -RLpn ${source} ${destination}`));
     } catch (e) {
