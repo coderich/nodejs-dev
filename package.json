@@ -6,9 +6,15 @@
     "access": "public"
   },
   "files": [
-    "src",
+    ".github",
     "bin",
+    "src",
     ".eslintrc",
+    ".gitignore",
+    ".npmrc",
+    ".nvmrc",
+    "babel.config.js",
+    "jest.config.js",
     "!__mocks__"
   ],
   "bin": {
