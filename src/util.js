@@ -14,5 +14,5 @@ exports.AppRootPath = AppRootPath;
 exports.shellCommand = (cmd, ...args) => {
   const { status = 0, stdout = '', stderr = '' } = ChildProcess.spawnSync(cmd, args.flat(), { shell: true, encoding: 'utf8' });
   if (status !== 0) throw new Error(stderr);
-  return stdout.trim();
+  return (stderr || stdout).trim();
 };
