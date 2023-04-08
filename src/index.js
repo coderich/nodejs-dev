@@ -26,7 +26,8 @@ exports.npmPublish = () => {
   const version = ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
   console.log(shellCommand('git config user.name "Richard Livolsi"'));
   console.log(shellCommand('git config user.email "richard.livolsi@gmail.com"'));
-  console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]" && npm publish && git push && git push --tags`));
+  console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]" && npm publish`));
+  console.log(shellCommand('git push && git push --tags'));
 };
 
 exports.autoMock = (dir) => {
