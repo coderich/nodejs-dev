@@ -4,7 +4,7 @@ on:
       - 'release/**'
 
 env:
-  CR_NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   GIT_BRANCH: ${{ vars.GITHUB_REF_NAME }}
   GIT_USER: 'Richard Livolsi'
   GIT_EMAIL: 'richard.livolsi@gmail.com'
