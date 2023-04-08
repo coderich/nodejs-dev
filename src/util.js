@@ -13,7 +13,7 @@ exports.AppRootPath = AppRootPath;
 
 exports.shellCommand = (cmd, ...args) => {
   const child = ChildProcess.spawnSync(cmd, args.flat(), { shell: true, encoding: 'utf8' });
-  if (child.error) console.error(child.error);
-  if (child.stderr.length) console.error(child.stderr);
+  if (child.error) throw new Error(child.error);
+  if (child.stderr.length) throw new Error(child.stderr);
   return child.stdout.trim();
 };

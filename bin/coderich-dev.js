@@ -18,7 +18,6 @@ program.command('migrate')
   .option('-p, --project <name>', 'project name')
   .option('-f, --folder <name>', 'migration folder name', 'migrations')
   .action((cmd, filename, opts, command) => {
-    console.log(opts);
     return migrate({ cmd, filename, ...opts }).catch((e) => {
       console.error(e.message);
       command.help();
