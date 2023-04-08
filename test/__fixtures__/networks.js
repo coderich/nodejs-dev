@@ -1,3 +1,5 @@
+/* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
+
 const { ObjectId } = require('mongodb');
 
 module.exports = [{

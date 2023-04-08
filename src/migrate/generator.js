@@ -1,3 +1,5 @@
+/* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
+
 const FS = require('fs');
 const Path = require('path');
 // const { Config, AppRoot } = require('./index');

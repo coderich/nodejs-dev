@@ -1,3 +1,5 @@
+/* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
+
 const Path = require('path');
 const migrate = require('migrate');
 const { AppRootPath, AppRootPackage, binPath, shellCommand } = require('./util');

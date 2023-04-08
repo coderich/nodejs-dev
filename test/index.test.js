@@ -1,3 +1,5 @@
+/* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
+
 const Path = require('path');
 const { autoMock, getMockFiles, parseFixtures } = require('../src/index');
 

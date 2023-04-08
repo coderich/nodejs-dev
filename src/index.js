@@ -1,3 +1,5 @@
+/* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
+
 /* eslint-disable no-console, import/no-dynamic-require, global-require */
 
 const FS = require('fs');

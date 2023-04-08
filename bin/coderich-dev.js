@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
+
 /* eslint-disable no-console */
 
 const { Command } = require('commander');
