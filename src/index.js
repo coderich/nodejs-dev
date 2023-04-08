@@ -6,7 +6,7 @@ const FS = require('fs');
 const Path = require('path');
 const Glob = require('glob');
 const { EJSON } = require('bson');
-const { AppRootPackage, selfPath, binPath, shellCommand } = require('./util');
+const { AppRootPackage, AppRootPath, selfPath, binPath, shellCommand } = require('./util');
 
 const cache = {};
 
