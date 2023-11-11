@@ -5,10 +5,23 @@
 const FS = require('fs');
 const Path = require('path');
 const Glob = require('glob');
-const { EJSON } = require('bson');
+const { EJSON, ObjectId } = require('bson');
+const Merge = require('lodash.merge');
+const eslintConfig = require('../.eslintrc');
+const babelConfig = require('../babel.config');
 const { AppRootPackage, AppRootPath, selfPath, binPath, shellCommand } = require('./util');
 
 const cache = {};
+
+exports.ObjectId = ObjectId;
+
+exports.getEslintConfig = (config = {}) => {
+  return Merge({}, eslintConfig, config);
+};
+
+exports.getBabelConfig = (config) => {
+  return Merge({}, babelConfig, config);
+};
 
 exports.copyrightHeader = () => {
   const path = Path.join(binPath, 'copyright-header');
@@ -16,7 +29,7 @@ exports.copyrightHeader = () => {
 };
 
 exports.bootstrap = () => {
-  ['.github', '.eslintrc', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(`${AppRootPath}`, file)]).forEach(([source, destination]) => {
+  ['.github', '.eslintrc.js', '.gitignore', '.npmrc', '.nvmrc', 'babel.config.js', 'jest.config.js'].map(file => [Path.join(selfPath, file), Path.join(`${AppRootPath}`, file)]).forEach(([source, destination]) => {
     try {
       console.log(shellCommand(`cp -RLpn ${source} ${destination}`));
     } catch (e) {

@@ -1,6 +1,6 @@
 /* Copyright (c) 2023 Coderich LLC. All Rights Reserved. */
 
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require('bson');
 
 module.exports = [{
   _id: new ObjectId('e4f66987111acdb28f871393'),
