@@ -20,7 +20,7 @@ exports.bootstrap = () => {
     try {
       console.log(shellCommand(`cp -RLpn ${source} ${destination}`));
     } catch (e) {
-      console.log(`[Ignored] ${source}\n`, e);
+      console.log(`[Ignored] ${source}`);
     }
   });
 };
