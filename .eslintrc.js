@@ -39,6 +39,6 @@ module.exports = {
     'one-var-declaration-per-line': 0,
     'no-return-assign': ['error', 'except-parens'],
     'no-unused-vars': ['error', { args: 'none' }],
-    'object-curly-newline': ['error', { minProperties: 10, consistent: true }],
+    'object-curly-newline': ['error', { minProperties: 0, consistent: true }],
   },
 };
