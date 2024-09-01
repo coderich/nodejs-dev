@@ -39,15 +39,15 @@ exports.bootstrap = () => {
 };
 
 exports.npmPublish = (config = {}) => {
-  const { name, version } = AppRootPackage;
   const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
-  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== version.split('.')[i])] || 'patch';
-  config.tag ??= 'v';
-  console.log(config.version);
-  // console.log(shellCommand(`npm --no-git-tag-version version -l ${version} -m "Publish ${name} to %s [skip ci]"`));
-  // console.log(shellCommand('npm publish'));
-  // console.log(shellCommand('git push && git push --tags'));
+  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
+  const version = shellCommand(`npm --no-git-tag-version version -l ${config.version}`);
+  const tag = `${AppRootPackage.name}@${version}`;
+  console.log(shellCommand(`git add . && git commit -m "Publish ${tag} [skip ci]"`));
+  console.log(shellCommand('npm publish'));
+  console.log(shellCommand(`git tag ${tag}`));
+  console.log(shellCommand('git push && git push --tags'));
 };
 
 exports.autoMock = (dir) => {
