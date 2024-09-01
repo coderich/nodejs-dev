@@ -5,6 +5,7 @@
 const FS = require('fs');
 const Path = require('path');
 const Glob = require('glob');
+const Semver = require('semver');
 const { EJSON, ObjectId } = require('bson');
 const Merge = require('lodash.merge');
 const eslintConfig = require('../.eslintrc');
@@ -39,11 +40,13 @@ exports.bootstrap = () => {
 };
 
 exports.npmPublish = (config = {}) => {
+  const { name, version } = cwdPackage;
   const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
-  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== cwdPackage.version.split('.')[i])] || 'patch';
-  const version = shellCommand(`npm --no-git-tag-version version -l ${config.version}`);
-  const tag = `${cwdPackage.name}@${version}`;
+  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== version.split('.')[i])] || 'patch';
+  cwdPackage.version = Semver.inc(version, config.version);
+  const tag = `${name}@${cwdPackage.version}`;
+  FS.writeFileSync(`${process.cwd()}/package.json`, JSON.stringify(cwdPackage, null, 2));
   console.log(shellCommand(`git add . && git commit -m "Publish ${tag} [skip ci]"`));
   console.log(shellCommand('npm publish'));
   console.log(shellCommand(`git tag ${tag}`));
