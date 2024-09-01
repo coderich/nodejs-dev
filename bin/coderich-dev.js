@@ -25,7 +25,7 @@ program.command('migrate')
   });
 
 //
-program.command('npmPublish').action(npmPublish);
+program.command('npmPublish').argument('[version]').action(version => npmPublish({ version }));
 program.command('bootstrap').action(bootstrap);
 program.command('copyrightHeader').action(copyrightHeader);
 

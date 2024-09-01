@@ -23,7 +23,8 @@
   "scripts": {
     "test": "jest --config=jest.config.js",
     "lint": "eslint ./",
-    "dev": "node ./bin/coderich-dev.js"
+    "dev": "node ./bin/coderich-dev.js",
+    "build": "babel src --out-dir dist"
   },
   "dependencies": {
     "@babel/cli": "7.23.9",

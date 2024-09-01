@@ -38,13 +38,16 @@ exports.bootstrap = () => {
   });
 };
 
-exports.npmPublish = () => {
+exports.npmPublish = (config = {}) => {
+  const { name, version } = AppRootPackage;
   const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
-  const version = ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
-  console.log(shellCommand(`npm version -l ${version} -m "Upgrade to %s [skip ci]"`));
-  console.log(shellCommand('npm publish'));
-  console.log(shellCommand('git push && git push --tags'));
+  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== version.split('.')[i])] || 'patch';
+  config.tag ??= 'v';
+  console.log(config.version);
+  // console.log(shellCommand(`npm --no-git-tag-version version -l ${version} -m "Publish ${name} to %s [skip ci]"`));
+  // console.log(shellCommand('npm publish'));
+  // console.log(shellCommand('git push && git push --tags'));
 };
 
 exports.autoMock = (dir) => {
