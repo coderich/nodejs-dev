@@ -8,6 +8,7 @@ const AppRootPath = require('app-root-path');
 
 exports.binPath = Path.join(`${AppRootPath}`, 'node_modules', '.bin');
 exports.selfPath = Path.join(`${AppRootPath}`, 'node_modules', '@coderich/dev');
+exports.cwdPackage = (() => { try { return require(`${process.cwd()}/package.json`); } catch { return {}; } })();
 exports.AppRootPackage = require(`${AppRootPath}/package.json`);
 exports.AppRootPath = AppRootPath;
 

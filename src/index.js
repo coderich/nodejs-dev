@@ -9,7 +9,7 @@ const { EJSON, ObjectId } = require('bson');
 const Merge = require('lodash.merge');
 const eslintConfig = require('../.eslintrc');
 const babelConfig = require('../babel.config');
-const { AppRootPackage, AppRootPath, selfPath, binPath, shellCommand } = require('./util');
+const { AppRootPath, cwdPackage, selfPath, binPath, shellCommand } = require('./util');
 
 const cache = {};
 
@@ -41,9 +41,9 @@ exports.bootstrap = () => {
 exports.npmPublish = (config = {}) => {
   const branch = shellCommand('git', 'rev-parse --abbrev-ref HEAD');
   const segments = branch.split('/')[1].split('.');
-  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== AppRootPackage.version.split('.')[i])] || 'patch';
+  config.version ??= ['major', 'minor'][segments.findIndex((el, i) => el !== cwdPackage.version.split('.')[i])] || 'patch';
   const version = shellCommand(`npm --no-git-tag-version version -l ${config.version}`);
-  const tag = `${AppRootPackage.name}@${version}`;
+  const tag = `${cwdPackage.name}@${version}`;
   console.log(shellCommand(`git add . && git commit -m "Publish ${tag} [skip ci]"`));
   console.log(shellCommand('npm publish'));
   console.log(shellCommand(`git tag ${tag}`));
